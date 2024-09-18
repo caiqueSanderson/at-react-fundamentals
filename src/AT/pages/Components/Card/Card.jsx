@@ -10,11 +10,11 @@ export default function Card(props) {
     const navigate = useNavigate();
 
     function navigateDetails(){
-        navigate("/details")
+        navigate(`/details/${props.title}`)
     }
 
     return (
-        <div onClick={navigateDetails} className={styles.card}>
+        <div onClick={navigateDetails} className={styles.card} key={props.index}>
                 <img src={props.image} alt="" className={styles.image} />
                 <section className={styles.description}>
                     <h3>{props.title}</h3>

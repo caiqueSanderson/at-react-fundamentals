@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.logo {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(10, 107, 218);
+
+    font-family: "Protest Guerrilla", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Estilo do formulário */
+.register {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+/* Estilo dos rótulos (labels) */
+.register label {
+    display: block;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Estilo dos campos de input */
+.register input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Estilo do botão */
+.register button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para telas maiores */
+@media (min-width: 600px) {
+    .logo {
+        display: block;
+    }
+    .register {
+        width: 40vw;
+        height: 90vh;
+    }
+
+    .register input {
+        padding: 5px;
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+}

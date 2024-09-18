@@ -1,15 +1,19 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { FaMoon } from "react-icons/fa6";
 
 export default function Menu() {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLigth, setIsLigth] = useState('.ligthTheme')
 
-  function toggleMenu(){
+  function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  function toggleTheme(){
+  function toggleTheme() {
     setIsLigth('.darkTheme');
   };
 
@@ -23,14 +27,17 @@ export default function Menu() {
         <a href="#" className={styles.menuItem}>
           <span className={styles.label}>Home</span>
         </a>
-        <a href="#" className={styles.menuItem}>
+        <Link to={'/register'} className={styles.menuItem}>
           <span className={styles.label}>Cadastro</span>
-        </a>
+        </Link>
+
         <a href="#" className={styles.menuItem}>
           <span className={styles.label}>Contatos</span>
         </a>
         <a href="#" className={styles.menuItem}>
-          <span className={styles.label} onClick={toggleTheme}>Modo Dark</span>
+          <span className={styles.label} onClick={toggleTheme}>
+            <FaMoon />
+          </span>
         </a>
       </nav>
     </header>
