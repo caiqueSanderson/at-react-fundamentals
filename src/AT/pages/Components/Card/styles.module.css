@@ -1,0 +1,39 @@
+.card {
+    position: relative;
+
+    width: 100vw;
+    height: 20vh;
+
+    display: flex;
+    flex-direction: row;
+
+    border: 0.1px solid black;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.image {
+    width: 40%;
+    height: 100%;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+}
+
+.price {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+
+@media (min-width:600px){
+    .card {
+        width: 50vw;
+        height: 30vh;
+    }
+}
