@@ -10,7 +10,7 @@ export default function Card(props) {
     const navigate = useNavigate();
 
     function navigateDetails(){
-        navigate(`/details/${props.title}`)
+        navigate(`/details/${props.id}`)
     }
 
     return (
@@ -19,10 +19,10 @@ export default function Card(props) {
                 <section className={styles.description}>
                     <h3>{props.title}</h3>
                     <span>{
-                        Array(Number(props.rating)).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
+                        Array(props.rating).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
                     }</span>
                     <span>{props.city} | {props.state}</span>
-                    <h3 className={styles.price}>{props.price}</h3>
+                    <h3 className={styles.price}>R${props.price}</h3>
                 </section>
         </div >
     )

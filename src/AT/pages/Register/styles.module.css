@@ -10,10 +10,7 @@
 }
 
 .logo {
-    display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    margin: 10px 0;
     color: rgb(10, 107, 218);
 
     font-family: "Protest Guerrilla", sans-serif;
@@ -22,10 +19,15 @@
     font-style: normal;
 }
 
+.title {
+    text-align: center;
+}
+
 /* Estilo do formulário */
 .register {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
+    margin: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 100%;
@@ -36,9 +38,9 @@
 /* Estilo dos rótulos (labels) */
 .register label {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
 }
 
 /* Estilo dos campos de input */
@@ -52,16 +54,34 @@
     font-size: 14px;
 }
 
+.register textarea {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
 /* Estilo do botão */
 .register button {
     width: 100%;
     padding: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
     background-color: #4CAF50;
     color: white;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.register button span {
+    margin-right: 10px;
 }
 
 .register button:hover {
@@ -72,10 +92,12 @@
 @media (min-width: 600px) {
     .logo {
         display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
     }
     .register {
         width: 40vw;
-        height: 90vh;
     }
 
     .register input {
