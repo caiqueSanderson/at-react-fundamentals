@@ -2,24 +2,97 @@
 
 .welcome {
     width: 100%;
-    height: calc(100vh - 50px);
-}
+    height: calc(45vh - 50px);
+    margin-bottom: 50px;
 
-.welcome img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(10, 107, 218);
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    position: relative;
 }
 
 .text {
-    color:white;
-    position: absolute;
-    top: 40vh;
+    text-align: center;
 }
+
+.slogan {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+
+
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-60%);
+
+    background-color: #fff;
+    padding: 5px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90vw;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.search input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #f7f7f7;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.search input:hover{
+    background-color: rgb(238, 235, 235);
+}
+
+.search button {
+    width: 40%;
+    padding: 5px;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    background-color: rgb(35, 129, 236);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background-color: rgb(29, 104, 191);
+}
+
 @media(min-width:600px) {
     .welcome {
         width: 100%;
-        height: calc(100vh - 60px);
+        height: calc(55vh - 60px);
     }
 }

@@ -24,18 +24,26 @@ export default function Home() {
         <div className={styles.page}>
             <Menu />
             <section className={styles.welcome}>
-                <img src="https://img.freepik.com/fotos-gratis/grande-piscina-com-uma-pequena-casa_1203-212.jpg" alt="" />
                 <div className={styles.text}>
-                    <h2>Aproveite cada momento</h2>
-                    <p>Conosco suas férias se tornam mágicas</p>
+                    <h2 className={styles.slogan}>Aproveite cada momento</h2>
+                    <p className={styles.subtitle}>Conosco suas férias se tornam mágicas</p>
+                </div>
+                <div className={styles.search}>
+                    <input
+                        type="text"
+                        placeholder="Encontre o hotel dos sonhos"
+                    // value={}
+                    // onChange={}
+                    />
+                    <button type="submit">Buscar</button>
                 </div>
             </section>
             <Card image='https://cf.bstatic.com/xdata/images/hotel/square240/404175626.webp?k=dcff45977a0f5ecd2cc5bab01829eb7df21a228b44c80a06054e24efebf53fe0&o=' title='Pousada Alto Da Boa Vista' rating='4' city='Campos do Jordäo' state='SP' price='658' />
             <div>
                 {hotels.map(
                     (hotel, index) => (
-                        <Card id={index} image={hotel.image} title={hotel.title} rating={hotel.rating} city={hotel.city} state={hotel.state} price={hotel.price}/>
-                        )
+                        <Card id={index} image={hotel.image} title={hotel.title} rating={hotel.rating} city={hotel.city} state={hotel.state} price={hotel.price} />
+                    )
                 )
                 }
             </div>

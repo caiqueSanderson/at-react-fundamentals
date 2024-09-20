@@ -50,10 +50,15 @@ export default function Register() {
 
     }
 
+    const link = {
+        textDecoration:"none",
+        color:"rgb(10, 107, 218)"
+    }
+
     return (
         <div className={styles.page}>
             <div className={styles.logo}>
-                <span>Booking.Hotels</span>
+            <Link to="/" style={link}><span>Booking.Hotels</span></Link>
             </div>
 
             <form
@@ -158,7 +163,6 @@ export default function Register() {
                     <FaRegFloppyDisk />
                 </button>
             </form>
-            <Link to="/">Voltar para a página Inicial</Link>
         </div>
     )
 }
