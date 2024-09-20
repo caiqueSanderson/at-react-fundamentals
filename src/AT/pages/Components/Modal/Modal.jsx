@@ -23,7 +23,9 @@ const xmarkStyle = {
 
 Modal.setAppElement('#root');
 
-export default function CustomModal({ modalIsOpen, closeModal, id }) {
+export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) {
+    const hotelData = dataHotel;
+
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [rating, setRating] = useState("");
@@ -31,11 +33,12 @@ export default function CustomModal({ modalIsOpen, closeModal, id }) {
     const [state, setState] = useState("");
     const [price, setPrice] = useState("");
 
-    useEffect(() => {
+    /* useEffect(() => {
         const hotelString = localStorage.getItem("@hotels");
         if (hotelString) {
             const hotelJSON = JSON.parse(hotelString);
             const hotelEdit = hotelJSON[id];
+            console.log(hotelEdit)
             setTitle(hotelEdit.title);
             setImage(hotelEdit.image);
             setRating(hotelEdit.rating);
@@ -43,23 +46,54 @@ export default function CustomModal({ modalIsOpen, closeModal, id }) {
             setState(hotelEdit.state);
             setPrice(hotelEdit.price);
         }
-    }, [id]);
+    }, [id]); */
+
+    useEffect(() => {
+        if (hotelData) {
+            setTitle(hotelData.title);
+            setImage(hotelData.image);
+            setRating(hotelData.rating);
+            setCity(hotelData.city);
+            setState(hotelData.state);
+            setPrice(hotelData.price);
+        }
+    }, [hotelData]);
+
+    const [hotels, setHotels] = useState([]);
+
+    /*  function saveHotel(e) {
+         e.preventDefault();
+         const hotelString = localStorage.getItem("@hotels");
+         if (hotelString) {
+             const hotelJSON = JSON.parse(hotelString);
+             hotelJSON[id] = {
+                 title: title,
+                 image: image,
+                 rating: Number(rating),
+                 city: city,
+                 state: state,
+                 price: Number(price)
+             };
+             localStorage.setItem("@hotels", JSON.stringify(hotelJSON));
+         }
+         closeModal();
+     } */
 
     function saveHotel(e) {
         e.preventDefault();
-        const hotelString = localStorage.getItem("@hotels");
-        if (hotelString) {
-            const hotelJSON = JSON.parse(hotelString);
-            hotelJSON[id] = {
-                title: title,
-                image: image,
-                rating: Number(rating),
-                city: city,
-                state: state,
-                price: Number(price)
-            };
-            localStorage.setItem("@hotels", JSON.stringify(hotelJSON));
-        }
+        const updatedHotels = [...hotels];
+        updatedHotels[id] = {
+            title: title,
+            image: image,
+            rating: Number(rating),
+            city: city,
+            state: state,
+            price: Number(price),
+        };
+
+        setHotels(updatedHotels);
+        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+
         closeModal();
     }
 

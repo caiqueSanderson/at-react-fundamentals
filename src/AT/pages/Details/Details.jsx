@@ -13,6 +13,7 @@ export default function Details() {
 
     const hotels = JSON.parse(localStorage.getItem('@hotels'));
     const hotel = hotels[id];
+    console.log|(hotel)
 
     const [index, setIndex] = useState(0);
 

@@ -42,7 +42,16 @@ export default function Card(props) {
                     onClick={openModal}
                 />
                 {modalIsOpen && (
-                    <CustomModal modalIsOpen={modalIsOpen} closeModal={closeModal} id={props.index}/>
+                    <CustomModal modalIsOpen={modalIsOpen} closeModal={closeModal} id={props.index} dataHotel={
+                        {
+                            title: `${props.title}`,
+                            image: `${props.image}`,
+                            rating: `${props.rating}`,
+                            city: `${props.city}`,
+                            state: `${props.state}`,
+                            price: `${props.price}`,
+                        }
+                    } />
                 )}
 
                 <div className={styles.bottom}>
