@@ -1,0 +1,82 @@
+.register {
+    background-color: #fff;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+/* Estilo dos rótulos (labels) */
+.register label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+}
+
+/* Campos de input */
+.register input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.register textarea {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+/* Estilo do botão */
+.register button {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    background-color: rgb(35, 129, 236);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register button span {
+    margin-right: 10px;
+}
+
+.register button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para telas maiores */
+@media (min-width: 600px) {
+    .logo {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+    .register {
+        width: 40vw;
+    }
+
+    .register input {
+        padding: 5px;
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+}

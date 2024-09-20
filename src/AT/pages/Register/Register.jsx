@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { FaRegFloppyDisk } from "react-icons/fa6";
@@ -16,6 +16,17 @@ export default function Register() {
     const [description, setDescription] = useState("");
 
     const [hotels, setHotels] = useState([]);
+
+    function restoredHotels() {
+        const hotelString = localStorage.getItem("@hotels");
+
+        if (hotelString) {
+            const hotelJSON = JSON.parse(hotelString);
+            setHotels(hotelJSON);
+        }
+    }
+
+    useEffect(() => { restoredHotels(); }, []);
 
     function addAditionalImage(index, value){
         const copy = [...aditionalImage];

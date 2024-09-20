@@ -49,6 +49,16 @@
     right: 15px;
 }
 
+.editButton {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+}
+.editButton:hover {
+    color: rgb(35, 129, 236);
+}
+
+
 .price {
     font-size: 1.2rem;
     font-weight: 600;
@@ -70,7 +80,7 @@
     cursor: pointer;
 }
 
-@media (min-width:600px){
+@media (min-width:600px) {
     .card {
         width: 20vw;
         height: 50vh;
