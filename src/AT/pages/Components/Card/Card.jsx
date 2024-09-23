@@ -2,21 +2,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import styles from './styles.module.css'
-import { FaStar, FaPenToSquare } from "react-icons/fa6";
+import { FaStar, FaPenToSquare, FaTrash } from "react-icons/fa6";
 
 import CustomModal from "../Modal/Modal";
 
-const style = {
-    color: "black",
-}
-
 export default function Card(props) {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [hotels, setHotels] = useState([])
     const navigate = useNavigate();
 
     function navigateDetails() {
         navigate(`/details/${props.id}`)
     }
+
+    const dataHotels = JSON.parse(localStorage.getItem("@hotels"));
 
     function openModal() {
         setIsOpen(true);
@@ -25,8 +24,14 @@ export default function Card(props) {
         setIsOpen(false);
     }
 
+    function deleteHotel() {
+        const updatedHotels = dataHotels.filter((hotel, index) => index !== props.id);
+        setHotels(updatedHotels);
+        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+    }
+
     return (
-        <div className={styles.card} key={props.index}>
+        <div className={styles.card} key={props.id}>
 
             <img src={props.image || "https://img.myloview.com.br/adesivos/foto-nao-encontrada-icone-vector-simbolo-sinal-400-133715057.jpg"} alt="" className={styles.image} />
 
@@ -40,6 +45,10 @@ export default function Card(props) {
                 <FaPenToSquare
                     className={styles.editButton}
                     onClick={openModal}
+                />
+                <FaTrash
+                    className={styles.deleteButton}
+                    onClick={deleteHotel}
                 />
                 {modalIsOpen && (
                     <CustomModal modalIsOpen={modalIsOpen} closeModal={closeModal} id={props.index} dataHotel={

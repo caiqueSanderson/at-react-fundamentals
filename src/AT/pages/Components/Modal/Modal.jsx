@@ -24,6 +24,7 @@ const xmarkStyle = {
 Modal.setAppElement('#root');
 
 export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) {
+    const [hotel , setHotel] = useState([]);
     const hotelData = dataHotel;
 
     const [title, setTitle] = useState("");

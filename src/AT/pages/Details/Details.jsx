@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { FaStar, FaGlassWater, FaHouseSignal } from "react-icons/fa6";
+import { GrFormPrevious } from "react-icons/gr";
+
 import styles from "./styles.module.css";
 import Menu from "../Components/Menu/Menu";
 
@@ -13,7 +15,7 @@ export default function Details() {
 
     const hotels = JSON.parse(localStorage.getItem('@hotels'));
     const hotel = hotels[id];
-    console.log|(hotel)
+    console.log | (hotel)
 
     const [index, setIndex] = useState(0);
 
@@ -30,6 +32,10 @@ export default function Details() {
             <Menu />
             <div className={styles.page} key={idHotel}>
                 <div className={styles.rigth}>
+                    <Link to={"/"} className={styles.return}>
+                        <GrFormPrevious />
+                        Voltar
+                    </Link>
                     <div className={styles.top}>
                         <div className={styles.title}>
                             <h3>{hotel.title}</h3>
@@ -65,7 +71,6 @@ export default function Details() {
                     <h3>Descrição da acomodação</h3>
                     <p>{hotel.description}</p>
                 </div>
-                <Link to={"/"}>Voltar</Link>
             </div >
         </>
     )

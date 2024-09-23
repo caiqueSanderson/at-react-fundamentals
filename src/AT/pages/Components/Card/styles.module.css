@@ -52,12 +52,20 @@
 .editButton {
     position: absolute;
     bottom: 5px;
-    left: 15px;
+    left: calc(40% + 2px);
 }
 .editButton:hover {
     color: rgb(35, 129, 236);
 }
 
+.deleteButton {
+    position: absolute;
+    bottom: 5px;
+    left: calc(40% + 30px);
+}
+.deleteButton:hover {
+    color: rgb(35, 129, 236);
+}
 
 .price {
     font-size: 1.2rem;
@@ -92,5 +100,13 @@
         width: 100%;
         height: 40%;
         object-fit: cover;
+    }
+
+    .editButton {
+        left: 5px;
+    }
+
+    .deleteButton{
+        left: 25px;
     }
 }
