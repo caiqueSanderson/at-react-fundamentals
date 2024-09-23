@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { nanoid } from 'nanoid';
 
 import { FaRegFloppyDisk } from "react-icons/fa6";
@@ -8,10 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import styles from "./styles.module.css";
 
 export default function Register() {
-    const navigate = useNavigate();
-
-    const [error, setError] = useState({ title: "", image: "", rating: "", city: "", state: "", price: "", description: "" })
-
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [aditionalImage, setAditionalImage] = useState([]);
@@ -58,6 +54,8 @@ export default function Register() {
             setHotels(copy);
             localStorage.setItem("@hotels", JSON.stringify(copy));
 
+            toast("Hotel cadastrado com sucesso!")
+
             setTitle("");
             setImage("");
             setAditionalImage(["", "", "", ""]);
@@ -66,8 +64,6 @@ export default function Register() {
             setState("");
             setPrice("");
             setDescription("");
-
-            navigate("/");
         } else {
             toast("Preencha todos os campos obrigatórios!")
         }
