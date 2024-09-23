@@ -14,19 +14,8 @@ export default function Details() {
     const idHotel = id;
 
     const hotels = JSON.parse(localStorage.getItem('@hotels'));
-    const hotel = hotels[id];
-    console.log | (hotel)
-
-    const [index, setIndex] = useState(0);
-
-    function nextImage() {
-        setIndex(index + 1);
-    }
-
-    function previousImage() {
-        setIndex(index - 1);
-    }
-
+    const hotel = hotels ? hotels.find(hotel => hotel.id === id) : null;
+    
     return (
         <>
             <Menu />

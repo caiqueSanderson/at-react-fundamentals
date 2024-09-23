@@ -23,79 +23,47 @@ const xmarkStyle = {
 
 Modal.setAppElement('#root');
 
-export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) {
-    const [hotel , setHotel] = useState([]);
-    const hotelData = dataHotel;
-
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
-    const [rating, setRating] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [price, setPrice] = useState("");
-
-    /* useEffect(() => {
-        const hotelString = localStorage.getItem("@hotels");
-        if (hotelString) {
-            const hotelJSON = JSON.parse(hotelString);
-            const hotelEdit = hotelJSON[id];
-            console.log(hotelEdit)
-            setTitle(hotelEdit.title);
-            setImage(hotelEdit.image);
-            setRating(hotelEdit.rating);
-            setCity(hotelEdit.city);
-            setState(hotelEdit.state);
-            setPrice(hotelEdit.price);
-        }
-    }, [id]); */
+export default function CustomModal({ modalIsOpen, closeModal, id, title: initialTitle, image: initialImage, rating: initialRating, city: initialCity, state: initialState, price: initialPrice }) {
+    const [hotels, setHotels] = useState([]);
+   
+    const [title, setTitle] = useState(initialTitle);
+    const [image, setImage] = useState(initialImage);
+    const [rating, setRating] = useState(initialRating);
+    const [city, setCity] = useState(initialCity);
+    const [state, setState] = useState(initialState);
+    const [price, setPrice] = useState(initialPrice);
 
     useEffect(() => {
-        if (hotelData) {
-            setTitle(hotelData.title);
-            setImage(hotelData.image);
-            setRating(hotelData.rating);
-            setCity(hotelData.city);
-            setState(hotelData.state);
-            setPrice(hotelData.price);
+        const hotelString = localStorage.getItem("@hotels");
+        if (hotelString) {
+            const storedHotels = JSON.parse(hotelString);
+            setHotels(storedHotels);
         }
-    }, [hotelData]);
+    }, []);
 
-    const [hotels, setHotels] = useState([]);
-
-    /*  function saveHotel(e) {
-         e.preventDefault();
-         const hotelString = localStorage.getItem("@hotels");
-         if (hotelString) {
-             const hotelJSON = JSON.parse(hotelString);
-             hotelJSON[id] = {
-                 title: title,
-                 image: image,
-                 rating: Number(rating),
-                 city: city,
-                 state: state,
-                 price: Number(price)
-             };
-             localStorage.setItem("@hotels", JSON.stringify(hotelJSON));
-         }
-         closeModal();
-     } */
-
-    function saveHotel(e) {
+    function editHotel(e) {
         e.preventDefault();
-        const updatedHotels = [...hotels];
-        updatedHotels[id] = {
-            title: title,
-            image: image,
-            rating: Number(rating),
-            city: city,
-            state: state,
-            price: Number(price),
-        };
+
+        const updatedHotels = hotels.map((hotel) => {
+            console.log(hotel.id)
+            if (hotel.id === id) {
+                return {
+                    ...hotel,
+                    title: title,
+                    image: image,
+                    rating: Number(rating),
+                    city: city,
+                    state: state,
+                    price: Number(price),
+                };
+            }
+            return hotel;
+        })
 
         setHotels(updatedHotels);
-        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+        localStorage.setItem("@hotels", JSON.stringify(hotels));
 
-        closeModal();
+        closeModal()
     }
 
     return (
@@ -104,7 +72,7 @@ export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) 
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel="Editar Informacoes do Hotel"
             >
                 <FaRegCircleXmark
                     onClick={closeModal}
@@ -112,7 +80,7 @@ export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) 
                 />
                 <form
                     className={styles.register}
-                    onSubmit={(e) => (saveHotel(e))}
+                    onSubmit={(e) => (editHotel(e))}
                 >
                     <h1 className={styles.title}>Editar informações</h1>
                     <label>
@@ -173,7 +141,7 @@ export default function CustomModal({ modalIsOpen, closeModal, id, dataHotel }) 
                             required />
                     </label>
                     <button type="submit">
-                        <span>Salvar </span>
+                        <span>Salvar edições</span>
                         <FaRegFloppyDisk />
                     </button>
                 </form>

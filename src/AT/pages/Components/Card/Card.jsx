@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from './styles.module.css'
 import { FaStar, FaPenToSquare, FaTrash } from "react-icons/fa6";
@@ -9,23 +9,38 @@ import CustomModal from "../Modal/Modal";
 export default function Card(props) {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [hotels, setHotels] = useState([])
+
+    function restoredHotels() {
+        const hotelString = localStorage.getItem("@hotels");
+
+        if (hotelString) {
+            const hotelJSON = JSON.parse(hotelString);
+            setHotels(hotelJSON);
+        }
+    }
+
+    useEffect(() => { restoredHotels(); }, []);
+
     const navigate = useNavigate();
 
     function navigateDetails() {
         navigate(`/details/${props.id}`)
     }
 
-    const dataHotels = JSON.parse(localStorage.getItem("@hotels"));
+    function navigateEdit() {
+        navigate(`/edit/${props.id}`)
+    }
 
     function openModal() {
         setIsOpen(true);
+        navigateEdit;
     }
     function closeModal() {
         setIsOpen(false);
     }
 
     function deleteHotel() {
-        const updatedHotels = dataHotels.filter((hotel, index) => index !== props.id);
+        const updatedHotels = hotels.filter((hotel) => hotel.id !== props.id);
         setHotels(updatedHotels);
         localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
     }
@@ -43,6 +58,7 @@ export default function Card(props) {
 
                 <span>{props.city} | {props.state}</span>
                 <FaPenToSquare
+
                     className={styles.editButton}
                     onClick={openModal}
                 />
@@ -51,16 +67,16 @@ export default function Card(props) {
                     onClick={deleteHotel}
                 />
                 {modalIsOpen && (
-                    <CustomModal modalIsOpen={modalIsOpen} closeModal={closeModal} id={props.index} dataHotel={
-                        {
-                            title: `${props.title}`,
-                            image: `${props.image}`,
-                            rating: `${props.rating}`,
-                            city: `${props.city}`,
-                            state: `${props.state}`,
-                            price: `${props.price}`,
-                        }
-                    } />
+                    <CustomModal
+                        modalIsOpen={modalIsOpen}
+                        closeModal={closeModal}
+                        title={props.title}
+                        image={props.image}
+                        rating={props.rating}
+                        city={props.city}
+                        state={props.state}
+                        price={props.price}
+                    />
                 )}
 
                 <div className={styles.bottom}>
