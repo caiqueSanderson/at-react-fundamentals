@@ -48,7 +48,9 @@ export default function Card(props) {
     return (
         <div className={styles.card} key={props.id}>
 
-            <img src={props.image || "https://img.myloview.com.br/adesivos/foto-nao-encontrada-icone-vector-simbolo-sinal-400-133715057.jpg"} alt="" className={styles.image} />
+            <img src={props.image} 
+            alt={props.title}
+            className={styles.image} />
 
             <section className={styles.description}>
                 <h3>{props.title}</h3>
