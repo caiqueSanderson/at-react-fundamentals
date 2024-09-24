@@ -60,8 +60,8 @@ export default function CustomModal({ modalIsOpen, closeModal, id, title: initia
             return hotel;
         })
 
+        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
         setHotels(updatedHotels);
-        localStorage.setItem("@hotels", JSON.stringify(hotels));
 
         closeModal()
     }

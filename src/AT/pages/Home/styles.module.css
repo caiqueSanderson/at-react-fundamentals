@@ -111,7 +111,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
-    margin-bottom: 20px;
+    padding-bottom: 5vh;
 }
 
 @media(min-width:600px) {

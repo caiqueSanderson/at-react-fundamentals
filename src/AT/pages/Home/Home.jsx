@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import Menu from "../Components/Menu/Menu";
 import Card from "../Components/Card/Card";
+import Footer from "../Components/Footer/Footer";
 
 import styles from "./styles.module.css";
 
@@ -42,11 +43,19 @@ export default function Home() {
         };
     };
 
-    useEffect(() => { restoredHotels(); }, []);
+    useEffect(() => { 
+        restoredHotels(); 
+
+        window.addEventListener("storage", restoredHotels);
+        return () => {
+            window.removeEventListener('storage', restoredHotels);
+        };
+
+    }, []);
 
     return (
         <div className={isLightTheme ? styles.ligthTheme : styles.darkTheme}>
-            <Menu toggleTheme={toggleTheme} isLightTheme={isLightTheme}/>
+            <Menu toggleTheme={toggleTheme} isLightTheme={isLightTheme} />
             <section className={styles.welcome}>
                 <div className={styles.text}>
                     <h2 className={styles.slogan}>Aproveite cada momento</h2>
@@ -82,6 +91,7 @@ export default function Home() {
                 )
                 }
             </div>
+            <Footer isLightTheme={isLightTheme}/>
         </div>
     )
 }
