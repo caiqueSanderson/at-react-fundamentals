@@ -53,7 +53,7 @@ export default function Card(props) {
             <section className={styles.description}>
                 <h3>{props.title}</h3>
                 <span>{
-                    Array(props.rating).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
+                    Array(Number(props.rating)).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
                 }</span>
 
                 <span>{props.city} | {props.state}</span>

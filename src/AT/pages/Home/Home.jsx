@@ -8,6 +8,11 @@ import styles from "./styles.module.css";
 
 export default function Home() {
     const [hotels, setHotels] = useState([]);
+    const [search, setSearch] = useState("");
+    
+    const searchLower = search.toLowerCase();
+    console.log(searchLower)
+    const hotelsFiltrados = hotels.filter((hotel) => hotel.title.toLowerCase().includes(searchLower))
 
     function restoredHotels() {
         const hotelString = localStorage.getItem("@hotels");
@@ -32,8 +37,8 @@ export default function Home() {
                     <input
                         type="text"
                         placeholder="Encontre o hotel dos sonhos"
-                    // value={}
-                    // onChange={}
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                     <button type="submit">Buscar</button>
                 </div>
