@@ -43,15 +43,24 @@ export default function Home() {
         };
     };
 
-    useEffect(() => { 
-        restoredHotels(); 
+    useEffect(() => { restoredHotels(); }, []);
 
-        window.addEventListener("storage", restoredHotels);
-        return () => {
-            window.removeEventListener('storage', restoredHotels);
-        };
+    function editHotel(id, updatedHotel) {
+        hotels.filter((hotel) => hotel.id !== id);
+        const copy = [...hotels];
+        copy.push(updatedHotel);
+        console.log(copy)
 
-    }, []);
+        // localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+        // setHotels(updatedHotels);
+
+    }
+
+    function deleteHotel(id) {
+        const updatedHotels = hotels.filter((hotel) => hotel.id !== id);
+        setHotels(updatedHotels);
+        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+    }
 
     return (
         <div className={isLightTheme ? styles.ligthTheme : styles.darkTheme}>
@@ -86,12 +95,12 @@ export default function Home() {
             <div className={styles.cards}>
                 {hotelsFiltrados.map(
                     (hotel) => (
-                        <Card key={hotel.id} id={hotel.id} image={hotel.image} title={hotel.title} rating={hotel.rating} city={hotel.city} state={hotel.state} price={hotel.price} />
+                        <Card key={hotel.id} id={hotel.id} image={hotel.image} title={hotel.title} rating={hotel.rating} city={hotel.city} state={hotel.state} price={hotel.price} onEdit={editHotel} onDelete={deleteHotel} />
                     )
                 )
                 }
             </div>
-            <Footer isLightTheme={isLightTheme}/>
+            <Footer isLightTheme={isLightTheme} />
         </div>
     )
 }

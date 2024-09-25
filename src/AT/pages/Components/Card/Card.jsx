@@ -2,13 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import styles from './styles.module.css'
-import { FaStar, FaPenToSquare, FaTrash } from "react-icons/fa6";
+import { FaStar, FaRegHeart, FaHeart, FaPenToSquare, FaTrash } from "react-icons/fa6";
 
 import CustomModal from "../Modal/Modal";
 
-export default function Card(props) {
+export default function Card({ id, image, title, rating, city, state, price, onDelete, onEdit }) {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [hotels, setHotels] = useState([])
+    const [favorite, setFavorite] = useState(false);
+    const [hotelsFavorites, setHotelsFavorites] = useState([]);
 
     function restoredHotels() {
         const hotelString = localStorage.getItem("@hotels");
@@ -19,16 +21,21 @@ export default function Card(props) {
         }
     }
 
-    useEffect(() => { restoredHotels(); }, []);
+    function restoreFavorites() {
+        const savedFavorites = localStorage.getItem("@favorites");
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
+    }
 
     const navigate = useNavigate();
 
     function navigateDetails() {
-        navigate(`/details/${props.id}`)
+        navigate(`/details/${id}`)
     }
 
     function navigateEdit() {
-        navigate(`/edit/${props.id}`)
+        navigate(`/edit/${id}`)
     }
 
     function openModal() {
@@ -39,26 +46,37 @@ export default function Card(props) {
         setIsOpen(false);
     }
 
-    function deleteHotel() {
-        const updatedHotels = hotels.filter((hotel) => hotel.id !== props.id);
-        setHotels(updatedHotels);
-        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
+    function hotelEdit() {
+        onEdit(id, hotels);
     }
 
-    return (
-        <div className={styles.card} key={props.id}>
+    function hotelDelete() {
+        onDelete(id);
+    }
 
-            <img src={props.image} 
-            alt={props.title}
-            className={styles.image} />
+    function favoriteChange() {
+        setFavorite(!favorite);
+    }
+
+    useEffect(() => { restoredHotels(); restoreFavorites(); }, []);
+    return (
+        <div className={styles.card} key={id}>
+            <span className={styles.favorite} onClick={favoriteChange}>
+                {favorite ? <FaHeart style={{ color: "red" }} /> : <FaRegHeart />}
+            </span>
+
+
+            <img src={image}
+                alt={title}
+                className={styles.image} />
 
             <section className={styles.description}>
-                <h3>{props.title}</h3>
+                <h3>{title}</h3>
                 <span>{
-                    Array(Number(props.rating)).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
+                    Array(Number(rating)).fill().map((_, index) => (<FaStar key={index} color="yellow" />))
                 }</span>
 
-                <span>{props.city} | {props.state}</span>
+                <span>{city} | {state}</span>
                 <FaPenToSquare
 
                     className={styles.editButton}
@@ -66,23 +84,19 @@ export default function Card(props) {
                 />
                 <FaTrash
                     className={styles.deleteButton}
-                    onClick={deleteHotel}
+                    onClick={hotelDelete}
                 />
                 {modalIsOpen && (
                     <CustomModal
                         modalIsOpen={modalIsOpen}
                         closeModal={closeModal}
-                        title={props.title}
-                        image={props.image}
-                        rating={props.rating}
-                        city={props.city}
-                        state={props.state}
-                        price={props.price}
+                        onEdit={hotelEdit}
+                        id={id}
                     />
                 )}
 
                 <div className={styles.bottom}>
-                    <h3 className={styles.price}>R${props.price}</h3>
+                    <h3 className={styles.price}>R${price}</h3>
                     <button
                         onClick={navigateDetails}
                         className={styles.detailsButton}

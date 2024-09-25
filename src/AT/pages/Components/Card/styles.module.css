@@ -30,6 +30,13 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+.favorite {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
 .image {
     width: 40%;
     height: 100%;
@@ -54,6 +61,7 @@
     bottom: 5px;
     left: calc(40% + 2px);
 }
+
 .editButton:hover {
     color: rgb(35, 129, 236);
 }
@@ -63,6 +71,7 @@
     bottom: 5px;
     left: calc(40% + 30px);
 }
+
 .deleteButton:hover {
     color: rgb(35, 129, 236);
 }
@@ -106,7 +115,7 @@
         left: 5px;
     }
 
-    .deleteButton{
+    .deleteButton {
         left: 25px;
     }
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Modal from "react-modal";
 
 import { FaRegCircleXmark, FaRegFloppyDisk } from "react-icons/fa6";
+import { ToastContainer, toast } from 'react-toastify';
 import styles from "./styles.module.css";
 
 const customStyles = {
@@ -23,49 +24,70 @@ const xmarkStyle = {
 
 Modal.setAppElement('#root');
 
-export default function CustomModal({ modalIsOpen, closeModal, id, title: initialTitle, image: initialImage, rating: initialRating, city: initialCity, state: initialState, price: initialPrice }) {
+export default function CustomModal({ modalIsOpen, closeModal, onEdit, id }) {
     const [hotels, setHotels] = useState([]);
-   
-    const [title, setTitle] = useState(initialTitle);
-    const [image, setImage] = useState(initialImage);
-    const [rating, setRating] = useState(initialRating);
-    const [city, setCity] = useState(initialCity);
-    const [state, setState] = useState(initialState);
-    const [price, setPrice] = useState(initialPrice);
 
-    useEffect(() => {
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [rating, setRating] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [price, setPrice] = useState("");
+
+    function restoredHotels() {
         const hotelString = localStorage.getItem("@hotels");
-        if (hotelString) {
-            const storedHotels = JSON.parse(hotelString);
-            setHotels(storedHotels);
-        }
-    }, []);
 
-    function editHotel(e) {
+        if (hotelString) {
+            const hotelJSON = JSON.parse(hotelString);
+            setHotels(hotelJSON);
+        }
+    }
+
+    function restoredData(id) {
+        const hotel = hotels.find((hotel) => hotel.id === id);
+        if (hotel) {
+            setTitle(hotel.title);
+            setImage(hotel.image);
+            setRating(hotel.rating);
+            setCity(hotel.city);
+            setState(hotel.state)
+            setPrice(hotel.price);
+        }
+    }
+
+    function submitEdit(e) {
         e.preventDefault();
 
-        const updatedHotels = hotels.map((hotel) => {
-            console.log(hotel.id)
+        const updatedHotel = hotels.find((hotel) => {
             if (hotel.id === id) {
                 return {
-                    ...hotel,
+                    id: hotel.id,
                     title: title,
                     image: image,
+                    aditionalImage: hotel.aditionalImage,
                     rating: Number(rating),
                     city: city,
                     state: state,
                     price: Number(price),
+                    description: hotel.description,
                 };
             }
-            return hotel;
-        })
+        });
 
-        localStorage.setItem("@hotels", JSON.stringify(updatedHotels));
-        setHotels(updatedHotels);
-
-        closeModal()
+        onEdit(id, updatedHotel)
+        toast("Hotel editado com sucesso!");
     }
 
+
+    useEffect(() => {
+        restoredHotels();
+    }, []);
+
+    useEffect(() => {
+        if (hotels.length > 0) {
+            restoredData(id);
+        }
+    }, [hotels, id]);
     return (
         <>
             <Modal
@@ -80,7 +102,7 @@ export default function CustomModal({ modalIsOpen, closeModal, id, title: initia
                 />
                 <form
                     className={styles.register}
-                    onSubmit={(e) => (editHotel(e))}
+                    onSubmit={submitEdit}
                 >
                     <h1 className={styles.title}>Editar informações</h1>
                     <label>
@@ -145,6 +167,7 @@ export default function CustomModal({ modalIsOpen, closeModal, id, title: initia
                         <FaRegFloppyDisk />
                     </button>
                 </form>
+                <ToastContainer />
             </Modal>
         </>
     )
