@@ -1,8 +1,75 @@
-# React + Vite
+# Booking.Hotels
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website desenvolvido em React.js
 
-Currently, two official plugins are available:
+Website criado de forma totalmente a dedo, utilizando a caracteristica dos componentes do React, Hooks, React-Router-Dom, Nanoid, React-Modal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Índice
+
+- [Visão Geral](#visão-geral)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Funcionalidades](#funcionalidades)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
+- [Contato](#contato)
+
+## Visão Geral
+
+### Demonstração
+
+![Screenshot do Projeto](link-para-imagem)
+
+### Descrição
+
+Website de apresentação dos projetos e demonstração de hard e soft skills
+
+## Instalação
+
+### Pré-requisitos
+
+Liste as ferramentas necessárias para rodar o projeto (por exemplo, Node.js, Git).
+
+### Passos para Instalação
+
+1. Clone o repositório: 
+   ```bash
+   git clone https://github.com/caiqueSanderson/at-react-fundamentals.git
+
+2. Navegue até o diretório do projeto:
+   cd booking-hotel
+
+3. Instale as dependências:
+   npm i
+
+4. Inicie o servidor local:
+   npm run dev
+
+## Uso
+
+Execute o código abaixo para rodar o projeto:
+    npm run dev
+
+## Funcionalidades
+
+## Estrutura das pastas
+
+## Tecnologias Utilizadas
+    React.Js
+    JavaScript
+    HTML
+    CSS
+    Git
+    GitHub
+
+## Contribuição
+
+## Licença
+
+## Contato
+Se precisar de mais informações, entre em contato:
+
+    Nome: Caique Sanderson
+    LinkedIn: [Meu Perfil](https://www.linkedin.com/in/caique-sanderson-de-s%C3%A1-borges-262545237/)
