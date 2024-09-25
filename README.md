@@ -39,12 +39,15 @@ Liste as ferramentas necessárias para rodar o projeto (por exemplo, Node.js, Gi
    git clone https://github.com/caiqueSanderson/at-react-fundamentals.git
 
 2. Navegue até o diretório do projeto:
+   ```bash
    cd booking-hotel
 
 3. Instale as dependências:
+    ```bash
    npm i
 
 4. Inicie o servidor local:
+   ```bash
    npm run dev
 
 ## Uso
