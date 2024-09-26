@@ -6,11 +6,10 @@ import { FaStar, FaRegHeart, FaHeart, FaPenToSquare, FaTrash } from "react-icons
 
 import CustomModal from "../Modal/Modal";
 
-export default function Card({ id, image, title, rating, city, state, price, onDelete, onEdit }) {
+export default function Card({ id, image, title, rating, city, state, price, onDelete, onEdit}) {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [hotels, setHotels] = useState([])
     const [favorite, setFavorite] = useState(false);
-    const [hotelsFavorites, setHotelsFavorites] = useState([]);
 
     function restoredHotels() {
         const hotelString = localStorage.getItem("@hotels");
@@ -18,13 +17,6 @@ export default function Card({ id, image, title, rating, city, state, price, onD
         if (hotelString) {
             const hotelJSON = JSON.parse(hotelString);
             setHotels(hotelJSON);
-        }
-    }
-
-    function restoreFavorites() {
-        const savedFavorites = localStorage.getItem("@favorites");
-        if (savedFavorites) {
-            setFavorites(JSON.parse(savedFavorites));
         }
     }
 
@@ -55,10 +47,20 @@ export default function Card({ id, image, title, rating, city, state, price, onD
     }
 
     function favoriteChange() {
-        setFavorite(!favorite);
+        const favorites = JSON.parse(localStorage.getItem('@favorites')) || [];
+        if(favorite === false){
+            setFavorite(!favorite);
+            if (!favorites.includes(id)) {
+                favorites.push(id);
+                localStorage.setItem('@favorites', JSON.stringify(favorites));
+              }
+        }else{
+            setFavorite(!favorite);
+        }
+        
     }
 
-    useEffect(() => { restoredHotels(); restoreFavorites(); }, []);
+    useEffect(() => { restoredHotels(); }, []);
     return (
         <div className={styles.card} key={id}>
             <span className={styles.favorite} onClick={favoriteChange}>

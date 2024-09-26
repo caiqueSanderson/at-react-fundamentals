@@ -3,15 +3,20 @@ import { useState, useEffect } from "react";
 
 import Menu from "../Components/Menu/Menu";
 import Card from "../Components/Card/Card";
+import Favorite from "../Favorite/Favorite";
 import Footer from "../Components/Footer/Footer";
 
 import styles from "./styles.module.css";
 
 export default function Home() {
     const [isLightTheme, setIsLigthTheme] = useState(true);
+
     function toggleTheme() {
-        setIsLigthTheme(!isLightTheme);
+        const themeNow = !isLightTheme;
+        setIsLigthTheme(themeNow);
+        localStorage.setItem("@theme", themeNow ? "true" : "false");
     };
+
 
     const [hotels, setHotels] = useState([]);
     const [search, setSearch] = useState("");
@@ -43,7 +48,15 @@ export default function Home() {
         };
     };
 
-    useEffect(() => { restoredHotels(); }, []);
+    function restoredTheme() {
+        const theme = localStorage.getItem("@theme");
+        setIsLigthTheme(theme === "true");
+    }
+
+    useEffect(() => {
+        restoredHotels();
+        restoredTheme();
+    }, []);
 
     function editHotel(id, updatedHotel) {
         hotels.filter((hotel) => hotel.id !== id);
@@ -100,6 +113,7 @@ export default function Home() {
                 )
                 }
             </div>
+            <Favorite />
             <Footer isLightTheme={isLightTheme} />
         </div>
     )

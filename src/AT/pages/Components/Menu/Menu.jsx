@@ -26,7 +26,7 @@ export default function Menu(props) {
         </Link>
 
         <a href="#" className={styles.menuItem}>
-          <span className={styles.label}>Contatos</span>
+          <span className={styles.label}>Favoritos</span>
         </a>
         <a href="#" className={styles.menuItem}>
           <span className={styles.label} onClick={props.toggleTheme}>

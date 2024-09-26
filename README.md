@@ -48,11 +48,12 @@ Liste as ferramentas necessárias para rodar o projeto (por exemplo, Node.js, Gi
 
 4. Inicie o servidor local:
    ```bash
-   npm run dev
+   npm start
 
 ## Uso
 
 Execute o código abaixo para rodar o projeto:
+    ```bash
     npm run dev
 
 ## Funcionalidades
