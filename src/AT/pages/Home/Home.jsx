@@ -77,7 +77,7 @@ export default function Home() {
 
     return (
         <div className={isLightTheme ? styles.ligthTheme : styles.darkTheme}>
-            <Menu toggleTheme={toggleTheme} isLightTheme={isLightTheme} />
+            <Menu toggleTheme={toggleTheme} />
             <section className={styles.welcome}>
                 <div className={styles.text}>
                     <h2 className={styles.slogan}>Aproveite cada momento</h2>

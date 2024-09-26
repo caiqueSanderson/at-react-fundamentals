@@ -19,6 +19,13 @@ export default function Register() {
 
     const [hotels, setHotels] = useState([]);
 
+    const [isLightTheme, setIsLigthTheme] = useState(true);
+
+    function restoredTheme() {
+        const theme = localStorage.getItem("@theme");
+        setIsLigthTheme(theme === "true");
+    }
+
     function restoredHotels() {
         const hotelString = localStorage.getItem("@hotels");
 
@@ -28,7 +35,10 @@ export default function Register() {
         }
     }
 
-    useEffect(() => { restoredHotels(); }, []);
+    useEffect(() => {
+        restoredHotels();
+        restoredTheme();
+    }, []);
 
     function addAditionalImage(index, value) {
         const copy = [...aditionalImage];
@@ -75,7 +85,7 @@ export default function Register() {
     }
 
     return (
-        <div className={styles.page}>
+        <div className={`${styles.page} ${isLightTheme ? styles.ligthTheme : styles.darkTheme}`}>
             <div className={styles.logo}>
                 <Link to="/" style={link}><span>Booking.Hotels</span></Link>
             </div>

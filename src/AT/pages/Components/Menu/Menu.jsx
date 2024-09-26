@@ -16,8 +16,8 @@ export default function Menu(props) {
       <div className={styles.logo}>
         <span>Booking.Hotels</span>
       </div>
-      <div className={styles.menuToggle} onClick={props.toggleMenu}>☰</div>
-      <nav className={`${styles.menu} ${isMenuOpen ? styles.show : ""} ${props.isLightTheme ? styles.lightTheme : styles.darkTheme}`}>
+      <div className={styles.menuToggle} onClick={toggleMenu}>☰</div>
+      <nav className={`${styles.menu} ${isMenuOpen ? styles.show : ""}`}>
         <a href="#" className={styles.menuItem}>
           <span className={styles.label}>Home</span>
         </a>
